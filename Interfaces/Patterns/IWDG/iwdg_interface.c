@@ -21,6 +21,7 @@
 #include "main.h"
 #include "iwdg_interface.h"
 
+#ifdef IWDG
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -61,3 +62,5 @@ void OPENBL_IWDG_Refresh(void)
     Error_Handler();
   }
 }
+
+#endif //IWDG

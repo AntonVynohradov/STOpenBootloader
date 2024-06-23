@@ -24,6 +24,7 @@
 #include <stdint.h>
 
 #include "openbootloader_conf.h"
+#include "interfaces_conf.h"
 
 /* Exported constants --------------------------------------------------------*/
 #define ERROR_COMMAND                     0xECU             /* Error command */
@@ -118,9 +119,8 @@ typedef struct
 /* Exported functions --------------------------------------------------------*/
 void OPENBL_Init(void);
 void OPENBL_DeInit(void);
+void OPENBL_Handler(void);
 void OPENBL_InterfacesDeInit(void);
-uint32_t OPENBL_InterfaceDetection(void);
-void OPENBL_CommandProcess(void);
 ErrorStatus OPENBL_RegisterInterface(OPENBL_HandleTypeDef *Interface);
 
 #endif /* OPENBL_CORE_H */

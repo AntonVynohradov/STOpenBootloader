@@ -24,6 +24,7 @@
 #include "fdcan_interface.h"
 #include "iwdg_interface.h"
 
+#ifdef FDCANx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -306,3 +307,4 @@ void OPENBL_FDCAN_SpecialCommandProcess(OPENBL_SpecialCmdTypeDef *Frame)
       break;
   }
 }
+#endif //FDCANx

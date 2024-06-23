@@ -19,13 +19,15 @@
 #ifndef OPENBL_USB_CMD_H
 #define OPENBL_USB_CMD_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "openbl_core.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef USB_OTG_FS
 uint16_t OPENBL_USB_EraseMemory(uint32_t Add);
 void OPENBL_USB_WriteMemory(uint8_t *pSrc, uint8_t *pDest, uint32_t Length);
 uint8_t *OPENBL_USB_ReadMemory(uint8_t *pSrc, uint8_t *pDest, uint32_t Length);
@@ -34,6 +36,8 @@ void OPENBL_USB_WriteProtect(uint8_t *pBuffer, uint32_t Length);
 void OPENBL_USB_WriteUnprotect(void);
 void OPENBL_USB_ReadProtect(void);
 void OPENBL_USB_ReadUnprotect(void);
+
+#endif // USB_OTG_FS
 
 #ifdef __cplusplus
 }

@@ -21,10 +21,10 @@
 #include "openbl_i2c_cmd.h"
 
 #include "openbootloader_conf.h"
-#include "app_openbootloader.h"
 #include "i2c_interface.h"
 #include "common_interface.h"
 
+#ifdef I2Cx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define OPENBL_I2C_COMMANDS_NB_MAX        19U       /* Number of supported commands */
@@ -1539,6 +1539,7 @@ static uint8_t OPENBL_I2C_ConstructCommandsTable(OPENBL_CommandsTypeDef *pI2cCmd
  */
 uint8_t OPENBL_I2C_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_SpecialCmdTypeTypeDef CmdType)
 {
+  #if 0
   uint8_t op_code[2];
   uint8_t xor;
   uint8_t status;
@@ -1546,7 +1547,6 @@ uint8_t OPENBL_I2C_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_SpecialCmdTypeTy
 
   /* Initialize the status variable */
   status = NACK_BYTE;
-
   /* Get the command OpCode (2 bytes) */
   op_code[0] = OPENBL_I2C_ReadByte(); /* Read the MSB byte */
   op_code[1] = OPENBL_I2C_ReadByte(); /* Read the LSB byte */
@@ -1591,6 +1591,8 @@ uint8_t OPENBL_I2C_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_SpecialCmdTypeTy
       status = NACK_BYTE;
     }
   }
-
-  return status;
+  #endif
+  return NACK_BYTE;
 }
+
+#endif // I2Cx

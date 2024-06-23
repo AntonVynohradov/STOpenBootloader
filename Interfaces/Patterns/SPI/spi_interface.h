@@ -20,13 +20,15 @@
 #ifndef SPI_INTERFACE_H
 #define SPI_INTERFACE_H
 
+/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
+#include "openbl_core.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-#include <stdint.h>
-#include "openbl_core.h"
+#ifdef SPIx
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -53,6 +55,8 @@ __attribute__((section(".ramfunc"))) void OPENBL_SPI_SendByte(uint8_t Byte);
 __attribute__((section(".ramfunc"))) void OPENBL_SPI_IRQHandler(void);
 __attribute__((section(".ramfunc"))) void OPENBL_SPI_SendBusyByte(void);
 #endif /* (__ICCARM__) */
+
+#endif //SPIx
 
 #ifdef __cplusplus
 }

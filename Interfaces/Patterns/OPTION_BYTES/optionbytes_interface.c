@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "openbl_mem.h"
-#include "app_openbootloader.h"
 #include "common_interface.h"
 #include "optionbytes_interface.h"
 
@@ -29,11 +28,11 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
-OPENBL_MemoryTypeDef OB_Descriptor =
+OPENBL_MemoryTypeDef OB1_Descriptor =
 {
-  OB_START_ADDRESS,
-  OB_END_ADDRESS,
-  OB_SIZE,
+  OB1_START_ADDRESS,
+  OB1_END_ADDRESS,
+  OB1_SIZE,
   OB_AREA,
   OPENBL_OB_Read,
   OPENBL_OB_Write,
@@ -44,6 +43,22 @@ OPENBL_MemoryTypeDef OB_Descriptor =
   NULL
 };
 
+#ifdef OB2_START_ADDRESS
+OPENBL_MemoryTypeDef OB2_Descriptor =
+{
+  OB2_START_ADDRESS,
+  OB2_END_ADDRESS,
+  OB2_SIZE,
+  OB_AREA,
+  OPENBL_OB_Read,
+  OPENBL_OB_Write,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+#endif
 /* Exported functions --------------------------------------------------------*/
 
 /**
@@ -105,29 +120,44 @@ void OPENBL_OB_Write(uint32_t Address, uint8_t *Data, uint32_t DataLength)
   HAL_FLASH_OB_Unlock();
 
   /* Clear error programming flags */
+  #if 0
   __HAL_FLASH_CLEAR_FLAG(FLASH_SR_ERRORS);
+  #else
+  __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_ALL_ERRORS);
+  #endif
 
   /* Write RDP Level */
   WRITE_REG(FLASH->OPTR, *(Data));
 
   /* Write OPTR */
   if (DataLength >= 4)
-  {
-    WRITE_REG(FLASH->OPTR, (*(Data) | (*(Data + 1) << 8) | (*(Data + 2) << 16) | (*(Data + 3) << 24)));
+  {   
+    WRITE_REG(FLASH->OPTR, (*(Data) | (*(Data + 1U) << 8) | (*(Data + 2U) << 16) | (*(Data + 3U) << 24)));    
   }
 
   /* Write PCROP1ASR */
   if (DataLength >= 10)
   {
+    #if 0
     WRITE_REG(FLASH->PCROP1ASR, (*(Data + 8) | (*(Data + 9) << 8)));
+    #else
+    WRITE_REG(FLASH->PCROP1SR, (*(Data + 8U) | (*(Data + 9U) << 8)));
+    WRITE_REG(FLASH->PCROP1ER, (*(Data + 16U) | (*(Data + 17U) << 8)));
+    #endif
   }
 
   /* Write PCROP1AER */
   if (DataLength >= 20)
   {
+    #if 0
     WRITE_REG(FLASH->PCROP1AER, (*(Data + 16) | (*(Data + 17) << 8) | (*(Data + 19) << 24)));
+    #else
+    WRITE_REG(FLASH->PCROP1SR, (*(Data + 8U) | (*(Data + 9U) << 8)));
+    WRITE_REG(FLASH->PCROP1ER, (*(Data + 16U) | (*(Data + 17U) << 8) | (*(Data + 18U) << 16) | (*(Data + 19U) << 24)));
+    #endif
   }
 
+  #if 0
   /* Write WRP1AR */
   if (DataLength >= 28)
   {
@@ -193,6 +223,25 @@ void OPENBL_OB_Write(uint32_t Address, uint8_t *Data, uint32_t DataLength)
   {
     WRITE_REG(FLASH->SECR, (*(Data + 112) | (*(Data + 113) << 8) | (*(Data + 114) << 16) | (*(Data + 115) << 24)));
   }
+  #else
+  /* Write protection of bank 1 area WRPA 1 area */
+  if (DataLength >= 25U)
+  {
+    FLASH->WRP1AR = ((*(Data + 26U) << FLASH_WRP1AR_WRP1A_END_Pos) | *(Data + 24U));
+  }
+
+  /* Write protection of bank 1 area WRPA 2 area */
+  if (DataLength >= 33U)
+  {
+    FLASH->WRP1BR = ((*(Data + 34U) << FLASH_WRP1BR_WRP1B_END_Pos) | *(Data + 32U));
+  }
+
+  /* Write STICKY area */
+  if (DataLength >= 41U)
+  {
+    WRITE_REG(FLASH->SEC1R, ((*(Data + 42U) << FLASH_SEC1R_BOOT_LOCK_Pos) | *(Data + 40U)));
+  }
+  #endif
 
   SET_BIT(FLASH->CR, FLASH_CR_OPTSTRT);
 

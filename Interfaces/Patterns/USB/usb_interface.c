@@ -19,10 +19,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "usb_interface.h"
-#include "app_usbx_device.h"
-#include "app_azure_rtos.h"
 #include "openbl_core.h"
 
+#ifdef USB_OTG_FS
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -127,3 +126,4 @@ uint32_t OPENBL_USB_GetPage(uint32_t Address)
 
   return page;
 }
+#endif //USB_OTG_FS

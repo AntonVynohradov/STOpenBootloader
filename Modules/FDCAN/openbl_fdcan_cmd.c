@@ -22,10 +22,10 @@
 #include "openbl_fdcan_cmd.h"
 
 #include "openbootloader_conf.h"
-#include "app_openbootloader.h"
 #include "fdcan_interface.h"
 #include "common_interface.h"
 
+#ifdef FDCANx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define OPENBL_FDCAN_COMMANDS_NB_MAX      13U       /* The maximum number of supported commands */
@@ -915,3 +915,5 @@ static uint8_t OPENBL_FDCAN_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_Special
 
   return status;
 }
+
+#endif // FDCANx

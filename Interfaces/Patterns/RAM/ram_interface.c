@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "openbl_mem.h"
-#include "app_openbootloader.h"
 #include "common_interface.h"
 #include "openbl_core.h"
 #include "ram_interface.h"

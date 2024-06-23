@@ -25,6 +25,7 @@
 #include "iwdg_interface.h"
 #include "flash_interface.h"
 
+#ifdef I2Cx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -407,3 +408,5 @@ void OPENBL_Disable_BusyState_Sending(void)
   /* Disable Flash busy state sending */
   OPENBL_Disable_BusyState_Flag();
 }
+
+#endif //I2Cx

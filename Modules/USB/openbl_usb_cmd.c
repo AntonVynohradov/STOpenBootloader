@@ -23,6 +23,7 @@
 #include "usb_interface.h"
 #include "common_interface.h"
 
+#ifdef USB_OTG_FS
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define USB_RAM_BUFFER_SIZE             20U  /* Size of USB buffer used to store received data from the host */
@@ -206,3 +207,5 @@ void OPENBL_USB_ReadUnprotect(void)
   /* Start post processing task if needed */
   Common_StartPostProcessing();
 }
+
+#endif //USB_OTG_FS

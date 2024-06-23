@@ -21,10 +21,10 @@
 #include "openbl_spi_cmd.h"
 
 #include "openbootloader_conf.h"
-#include "app_openbootloader.h"
 #include "spi_interface.h"
 #include "common_interface.h"
 
+#ifdef SPIx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define OPENBL_SPI_COMMANDS_NB_MAX        13U  /* Number of supported commands */
@@ -1027,3 +1027,4 @@ static uint8_t OPENBL_SPI_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_SpecialCm
 
   return status;
 }
+#endif // SPIx

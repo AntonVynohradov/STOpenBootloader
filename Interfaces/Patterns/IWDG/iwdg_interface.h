@@ -24,6 +24,8 @@
 extern "C" {
 #endif
 
+#ifdef IWDG
+
 /* Includes ------------------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -31,6 +33,8 @@ extern "C" {
 /* Exported functions ------------------------------------------------------- */
 void OPENBL_IWDG_Configuration(void);
 void OPENBL_IWDG_Refresh(void);
+
+#endif //IWDG
 
 #ifdef __cplusplus
 }

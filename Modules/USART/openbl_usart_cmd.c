@@ -21,10 +21,10 @@
 #include "openbl_usart_cmd.h"
 
 #include "openbootloader_conf.h"
-#include "app_openbootloader.h"
 #include "usart_interface.h"
 #include "common_interface.h"
 
+#ifdef USARTx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define OPENBL_USART_COMMANDS_NB_MAX      13U       /* The maximum number of supported commands */
@@ -941,6 +941,7 @@ static uint8_t OPENBL_USART_ConstructCommandsTable(OPENBL_CommandsTypeDef *pUsar
  */
 static uint8_t OPENBL_USART_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_SpecialCmdTypeTypeDef CmdType)
 {
+  #if 0
   uint8_t op_code[2];
   uint8_t xor;
   uint8_t status;
@@ -993,6 +994,8 @@ static uint8_t OPENBL_USART_GetSpecialCmdOpCode(uint16_t *OpCode, OPENBL_Special
       status = NACK_BYTE;
     }
   }
-
-  return status;
+#endif
+  return NACK_BYTE;
 }
+
+#endif // USARTx

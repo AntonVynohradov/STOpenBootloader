@@ -23,9 +23,17 @@
 /* Includes ------------------------------------------------------------------*/
 #include "openbl_core.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef USARTx
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #define OPENBL_USART_VERSION                 0x31U               /* Open Bootloader USART protocol V3.1 */
+
+
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
@@ -45,5 +53,11 @@ void OPENBL_USART_WriteProtect(void);
 void OPENBL_USART_WriteUnprotect(void);
 void OPENBL_USART_SpecialCommand(void);
 void OPENBL_USART_ExtendedSpecialCommand(void);
+
+#endif // USARTx
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* OPENBL_USART_CMD_H */

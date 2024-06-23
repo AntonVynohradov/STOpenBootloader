@@ -20,13 +20,15 @@
 #ifndef USB_INTERFACE_H
 #define USB_INTERFACE_H
 
+/* Includes ------------------------------------------------------------------*/
+#include "platform.h"
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-#include "platform.h"
-
+#ifdef USB_OTG_FS
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
@@ -35,6 +37,8 @@ void OPENBL_USB_Configuration(void);
 void OPENBL_USB_DeInit(void);
 uint8_t OPENBL_USB_ProtocolDetection(void);
 uint32_t OPENBL_USB_GetPage(uint32_t Address);
+
+#endif //USB_OTG_FS
 
 #ifdef __cplusplus
 }

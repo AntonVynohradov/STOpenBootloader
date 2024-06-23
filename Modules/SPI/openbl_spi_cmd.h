@@ -23,9 +23,15 @@
 /* Includes ------------------------------------------------------------------*/
 #include "openbl_core.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef SPIx
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #define OPENBL_SPI_VERSION                 0x11U  /* Open Bootloader SPI protocol V1.1 */
+
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
@@ -45,5 +51,11 @@ void OPENBL_SPI_WriteProtect(void);
 void OPENBL_SPI_WriteUnprotect(void);
 void OPENBL_SPI_SpecialCommand(void);
 void OPENBL_SPI_ExtendedSpecialCommand(void);
+
+#endif // SPIx
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* OPENBL_SPI_CMD_H */

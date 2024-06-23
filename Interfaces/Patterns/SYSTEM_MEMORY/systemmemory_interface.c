@@ -19,9 +19,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "openbl_mem.h"
-#include "app_openbootloader.h"
 #include "common_interface.h"
 #include "systemmemory_interface.h"
+#include "openbootloader_conf.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -33,8 +33,8 @@ OPENBL_MemoryTypeDef ICP1_Descriptor =
 {
   ICP1_START_ADDRESS,
   ICP1_END_ADDRESS,
-  (28U * 1024U),
-  ICP1_AREA,
+  ICP1_SIZE,
+  ICP_AREA,
   OPENBL_ICP_Read,
   NULL,
   NULL,
@@ -48,8 +48,8 @@ OPENBL_MemoryTypeDef ICP2_Descriptor =
 {
   ICP2_START_ADDRESS,
   ICP2_END_ADDRESS,
-  (28U * 1024U),
-  ICP2_AREA,
+  ICP2_SIZE,
+  ICP_AREA,
   OPENBL_ICP_Read,
   NULL,
   NULL,

@@ -23,9 +23,15 @@
 /* Includes ------------------------------------------------------------------*/
 #include "openbl_core.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef I2Cx
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #define OPENBL_I2C_VERSION                 0x12U               /* Open Bootloader I2C protocol V1.2 */
+
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
@@ -51,5 +57,11 @@ void OPENBL_I2C_NonStretchReadoutProtect(void);
 void OPENBL_I2C_NonStretchReadoutUnprotect(void);
 void OPENBL_I2C_SpecialCommand(void);
 void OPENBL_I2C_ExtendedSpecialCommand(void);
+
+#endif // I2Cx
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* OPENBL_I2C_CMD_H */

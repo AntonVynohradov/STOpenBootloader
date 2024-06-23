@@ -24,6 +24,7 @@
 #include "spi_interface.h"
 #include "iwdg_interface.h"
 
+#ifdef SPIx
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define SPI_DUMMY_BYTE                    0x00U  /* Dummy byte */
@@ -406,3 +407,4 @@ void OPENBL_SPI_SpecialCommandProcess(OPENBL_SpecialCmdTypeDef *SpecialCmd)
       break;
   }
 }
+#endif // SPIx

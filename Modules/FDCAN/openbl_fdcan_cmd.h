@@ -20,6 +20,11 @@
 #ifndef OPENBL_FDCAN_CMD_H
 #define OPENBL_FDCAN_CMD_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef FDCANx
 /* Includes ------------------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -30,6 +35,7 @@
 /* Exported variables --------------------------------------------------------*/
 extern uint8_t TxData[FDCAN_RAM_BUFFER_SIZE];
 extern uint8_t RxData[FDCAN_RAM_BUFFER_SIZE];
+
 
 /* Exported functions ------------------------------------------------------- */
 OPENBL_CommandsTypeDef *OPENBL_FDCAN_GetCommandsList(void);
@@ -47,5 +53,11 @@ void OPENBL_FDCAN_WriteProtect(void);
 void OPENBL_FDCAN_WriteUnprotect(void);
 void OPENBL_FDCAN_SpecialCommand(void);
 void OPENBL_FDCAN_ExtendedSpecialCommand(void);
+
+#endif //FDCANx
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* OPENBL_FDCAN_CMD_H */
